@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bot com Leitura de PDFs</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="src/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="document-panel" aria-label="Documento">
+        <header>
+          <p class="eyebrow">Bot com leitura de PDFs</p>
+          <h1>Documento antes da resposta</h1>
+          <p class="intro">A demo mostra uma versao simples de busca contextual: o bot responde usando trechos do documento carregado.</p>
+        </header>
+
+        <div class="upload-box">
+          <label for="pdfInput">Carregar PDF</label>
+          <input id="pdfInput" type="file" accept="application/pdf">
+          <button id="readPdfButton" type="button">Ler PDF</button>
+          <p id="pdfStatus" class="status">Nenhum PDF carregado.</p>
+        </div>
+
+        <label class="text-label" for="documentText">Texto do documento</label>
+        <textarea id="documentText" rows="16">Curso de Inteligencia Artificial da My Robot
+
+O aluno aprende a criar chatbots, usar prompts, guardar contexto e consultar documentos. A trilha combina Python, APIs, interfaces web e pensamento critico.
+
+Um bot com leitura de PDFs deve buscar informacoes dentro do documento antes de responder. Isso ajuda a reduzir respostas inventadas e ensina o aluno a mostrar fontes.
+
+Na etapa final, o estudante pode criar uma interface com historico, graficos e publicacao do projeto.</textarea>
+
+        <div class="button-row">
+          <button id="useTextButton" type="button">Usar texto</button>
+          <button id="summaryButton" type="button">Gerar resumo</button>
+        </div>
+      </section>
+
+      <section class="answer-panel" aria-label="Perguntas e respostas">
+        <header class="answer-header">
+          <div>
+            <p class="eyebrow">Pergunta</p>
+            <h2>Buscador contextual</h2>
+          </div>
+          <span id="chunkCount" class="counter">0 trechos</span>
+        </header>
+
+        <form id="questionForm" class="question-form">
+          <label class="sr-only" for="questionInput">Pergunta sobre o documento</label>
+          <input id="questionInput" type="text" autocomplete="off" placeholder="Ex.: O que o aluno aprende?">
+          <button type="submit">Responder</button>
+        </form>
+
+        <section class="answer-box">
+          <h3>Resposta do bot</h3>
+          <div id="answerText" class="answer-text">Use o texto de exemplo ou carregue um PDF para comecar.</div>
+        </section>
+
+        <section class="sources-box">
+          <h3>Trechos encontrados</h3>
+          <div id="sourcesList" class="sources-list"></div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
